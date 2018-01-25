@@ -7,11 +7,11 @@ Requirements
 
 
 # Install Python and run
-pip install Django==2.0.1
-pip install djangorestframework
-pip install pywinrm
-cd ${PROJECT ROOT}
-python manage.py runserver
+- pip install Django==2.0.1
+- pip install djangorestframework
+- pip install pywinrm
+- cd ${PROJECT ROOT}
+- python manage.py runserver
 
 # Browse to site
 127.0.0.1:8000/vuln/
