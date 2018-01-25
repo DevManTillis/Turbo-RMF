@@ -6,7 +6,7 @@ Requirements
 - Django Rest Framework v3
 
 
-# Install Python and run
+# Install Resources and Run
 - pip install Django==2.0.1
 - pip install djangorestframework
 - pip install pywinrm
