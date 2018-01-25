@@ -1,0 +1,98 @@
+{% extends "theform/base.html" %}
+{% block content %}
+
+
+<div ng-app="myApp" ng-controller="myCtrl">
+<nav class="col-sm-2" id="myScrollspy">
+<ul class="nav nav-pills nav-stacked vertical-menu" data-offset-top="205">
+
+{% verbatim %}
+<li ng-repeat="x in myWelcome"><a data-toggle="pill" href="#{{ x.v_ids }}">{{ x.v_ids }}</a></li>
+{% endverbatim %}        
+</ul>
+</nav>
+
+
+<form name="form" id="form">
+ 	<button id="button" ng-click="SendData()">Submit</button><br/>
+	
+<div class="col-sm-10">
+<div class="tab-content">
+<div id="" class="active tab-pane toggle">
+<h1 style="font-size:4em">Welcome to the Rock RMF!</h1>
+<h1>Click on a Vulnerability item to get started.</h1>
+</div>
+{% verbatim %}
+
+
+	<div ng-repeat="x in myWelcome" id="{{ x.v_ids }}" class="tab-pane toggle">
+        <div id="{{ x.v_ids }}" class="row">    
+		   <div class="container">
+               <!--TOP TABS MENU-->
+          <ul class="nav nav-pills">
+            <li><a class="ness" data-toggle="pill">{{ x.v_ids }}</a></li>
+            <li>
+			<a class="ness" data-toggle="pill">
+			  <select style="color:black;" name="{{x.v_sev}}" ng-model="x.v_sev" ng-options="x for x in options">
+			  {{x}}
+			  </select><br/>
+			</a>
+			</li>
+            <li>
+			<a class="ness" data-toggle="pill">
+			  <select style="color:black;" name="{{x.v_sta}}" ng-model="x.v_sta" ng-options="x for x in status_options">
+			  {{x}}
+			  </select><br/>
+			</a>
+			</li>
+          </ul>
+		  <div class="tab-content">
+<div style="width:100%;">		  
+    <div class="half">
+        <div class="toggle_tab">
+            <input class="toggle_input" id="{{ x.v_ids }}_1" type="checkbox" name="tabs">
+            <label class="toggle_label" for="{{ x.v_ids }}_1">Discussion:</label>
+            <div class="tab-content">
+                <p>{{ x.v_dis }}</p>
+            </div>
+        </div>
+        <div class="toggle_tab">
+            <input class="toggle_input" id="{{ x.v_ids }}_2" type="checkbox" name="tabs">
+            <label class="toggle_label" for="{{ x.v_ids }}_2">Check Content:</label>
+            <div class="tab-content">
+                <p>{{ x.v_con }}</p>
+            </div>
+        </div>
+        <div class="toggle_tab">
+            <input class="toggle_input" id="{{ x.v_ids }}_3" type="checkbox" name="tabs">
+            <label class="toggle_label" for="{{ x.v_ids }}_3">Fix Text:</label>
+            <div class="tab-content">
+                <p>{{ x.v_fix }}</p>
+            </div>
+        </div>
+
+
+        <br />
+        <h3>Finding Details</h3>
+        <input style="width:500px;" type="text" name="{{x.Finding_Details}}" ng-model="x.Finding_Details" /><br />
+        <h3>Comments</h3>
+        <input style="width:500px;" type="text" name="{{x.Comments}}" ng-model="x.Comments" /><br />
+    
+    </div> 
+</div>	
+		  </div>
+		</div>
+    </div>	
+</div>
+{% endverbatim %}
+
+
+
+		<!--FORM-->
+<!--ENDFORM-->	
+</div>
+</div>
+
+</form>
+</div>
+{% endblock %}

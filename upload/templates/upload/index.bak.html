@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+{{ context }}
+<form action="{% url 'upload:run' %}" method="post"> 
+{% csrf_token %}
+
+<input type='submit' name='run' value='Run' /> 			
+</form>
+
+
+{% endblock %}
+
+

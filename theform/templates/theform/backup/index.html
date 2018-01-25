@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<body>
+<script>
+var app = angular.module('myApp', []);
+app.config(function($httpProvider) {
+    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+});
+app.controller('myCtrl', function($scope, $http) {
+  $http.get("/theform/authors/").then(function(response) {
+      $scope.myWelcome = response.data;
+	  $scope.options = ["MR","MRS","MS"]
+	  
+
+	  
+  });
+  
+     $scope.SendData = function () {
+	 values =  $scope.myWelcome
+	 angular.forEach(values, function(value, key) {
+	 alert(value.id+" "+ value.name);
+	 console.log("pk: "+value.id+" "+ " name: "+ value.name+" "+"Submitted ")
+          $http({
+          method  : 'PUT',
+          url     : '/theform/authors/'+value.id+'/',
+          data    : value,
+          headers : {'Content-Type': 'application/json'}
+         }).then(function(data) {
+            if (data.errors) {
+			console.log('COULDNT POST!');
+              $scope.PostDataResponse = data.errors.name;
+            } else {
+              $scope.PostDataResponse = data.message;
+            }
+          });
+			})
+			// end iter for values
+			}
+
+});
+
+</script>
+
+
+
+<div ng-app="myApp" ng-controller="myCtrl"> 
+{% verbatim %}
+
+
+
+<p>{{myWelcome}}</p>
+
+ <div ng-app="myApp" ng-controller="myCtrl">
+ <form name="form" id="form">
+  <ul>
+    	<li ng-repeat="x in myWelcome">
+
+	 <input style="width:500px;" type="text" name="{{x.name}}" ng-model="x.name" />
+		  <!--<input type="text" name="{{x.title}}" ng-model="x.title" />-->
+	  <select name="{{x.title}}" ng-model="x.title" ng-options="x for x in options">
+	  {{x}}
+</select>
+	   <input type="text" name="{{x.birth_date}}" ng-model="x.birth_date" />
+	    {{x.id}}
+	  {{x.name}}
+	</li>
+
+  </ul>
+  <!--
+  <input type="text" name="{{myWelcome.name}}" ng-model="myWelcome.name" />
+	  <input type="text" name="{{myWelcome.title}}" ng-model="myWelcome.title" />
+	   <input type="text" name="{{myWelcome.birth_date}}" ng-model="myWelcome.birth_date" />
+    -->
+	<button id="button" ng-click="SendData()">Submit</button>
+	</form>
+    <hr />
+    {{ PostDataResponse }}
+</div> 
+  
+  
+{% endverbatim %}
+<h1>{{crap}}</h1>
+
+
+
+
+
+</div>
+
+<p>The $http service requests a page on the server, and the response is set as the value of the "myWelcome" variable.</p>
+
+
+
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,3 @@
+STATUS : Not_Reviewed, Open, NotAFinding, Not_Applicable
+
+severity_override : high,medium,low

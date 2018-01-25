@@ -1,0 +1,21 @@
+<html>
+
+<body>
+<form action="{% url "lockdown:index" %}" method="post">
+    {% csrf_token %}
+	<table>
+    {{ form }}
+	</table>
+    <input type="submit" value="Execute" />
+</form>
+<div style="background-color:darkblue;">
+<p style="color:white;">{{ initiate | safe }}</p>
+</div>
+
+
+
+
+
+
+</body>
+</html>

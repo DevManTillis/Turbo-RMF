@@ -1,0 +1,28 @@
+{% extends 'upload/base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+{{ context }}
+{{ data }}
+  <ul>
+    <li>
+      <a href="{% url 'upload:run' %}">Simple Upload</a>
+    </li>
+  </ul>
+
+  <p>Uploaded files:</p>
+  <ul>
+    {% for obj in documents %}
+      <li>
+        <a href="{{ obj.document.url }}">{{ obj.document.name }}</a>
+        <small>(Uploaded at: {{ obj.uploaded_at }})</small>
+      </li>
+    {% endfor %}
+  </ul>
+
+
+{% endblock %}
+
+

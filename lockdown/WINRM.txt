@@ -1,0 +1,21 @@
+https://godjango.com/18-basic-ajax/
+
+46569303ba176a44a7b293b789b063abc83d846c
+
+## CONFIGURE WINRM CLIENT ###
+
+$host_name = "host_name"
+winrm quickconfig -quiet
+New-SelfSignedCertificate -DnsName host_name
+Get-ChildItem -path Cert:\LocalMachine\My\ | Where-Object -Property Subject -EQ "CN=hostname" | select Thumbprint -ExpandProperty Thumbprint
+cp .\host_name.crt Cert:\LocalMachine\TrustedPublisher\
+Export-Certificate -Cert '.\\LocalMachine\My\46569303ba176a44a7b293b789b063abc83d846c' -FilePath C:\install\winrm_config\localhost.crt
+
+winrm create winrm/config/Listener?Address=*+Transport=HTTPS @{Hostname="host_name";CertificateThumbprint="certificate_thumbprint"}
+
+###############################
+
+???
+$path = "hklm:\software\notepad++"
+$key = '(default)'
+(Get-ItemProperty -LiteralPath $path ).$key
