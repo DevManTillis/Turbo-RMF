@@ -1,4 +1,17 @@
 # Turbo RMF
 Requirements
 - Python 3.6
-- Django Python  atleast version 1.11.15
+- Django Python 2.0.1
+- Pywinrm 3.0
+- Django Rest Framework v3
+
+
+# Install Python and run
+pip install Django==2.0.1
+pip install djangorestframework
+pip install pywinrm
+cd ${PROJECT ROOT}
+python manage.py runserver
+
+# Browse to site
+127.0.0.1:8000/vuln/
