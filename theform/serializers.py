@@ -13,7 +13,7 @@ class VulnSerializer(serializers.ModelSerializer):
             'v_dis',
             'v_con',
             'v_fix',
-            #'v_command',
+            'v_command',
             #'v_command_status',
             #'v_command_enabled',
             'Comments',

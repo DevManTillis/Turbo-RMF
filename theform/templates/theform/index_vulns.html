@@ -3,6 +3,7 @@
 
 
 <div ng-app="myApp" ng-controller="myCtrl">
+
     <nav class="col-sm-2" id="myScrollspy">
         <ul class="nav nav-pills nav-stacked vertical-menu" data-offset-top="205">
 
@@ -69,6 +70,16 @@
                                             <div class="tab-content">
                                                 <p>{{ x.v_fix }}</p>
                                             </div>
+                                        </div>
+                                        <br />
+
+                                        <div ng-controller="testCtrl">
+                                            <h3>v_command : {{$parent.x.v_command}}</h3>
+                                            <input style="width:500px;" type="text" name="{{$parent.x.v_command}}" ng-model="$parent.x.v_command" />
+                                            <button id="button" ng-click="SendCommand($parent.x)">Execute</button><br />
+
+                                            <br />
+                                            <h3>title : {{title}}</h3>
                                         </div>
 
                                         <br />

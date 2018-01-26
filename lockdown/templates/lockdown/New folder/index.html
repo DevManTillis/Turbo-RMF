@@ -1,0 +1,19 @@
+{% extends "lockdown/base.html" %}
+{% block content %}
+<div style="margin-left:200px;" ng-app="myApp" ng-controller="myCtrl">
+
+    {% verbatim %}
+
+    <div ng-controller="testCtrl">
+        <h3>v_command : {{$parent.x.v_command}}</h3>
+        <input style="width:500px;" type="text" name="" ng-model="" />
+        <button id="button" ng-click="SendCommand()">Execute</button><br />
+
+        <br />
+        <h3>title : {{title}}</h3>
+    </div>
+
+    {% endverbatim %}
+
+</div>
+{% endblock %}
