@@ -1,15 +1,46 @@
+{% extends "lockdown/base.html" %}
+{% block content %}
+
+
+<div ng-app="myApp" ng-controller="myCtrl">
+    <h3>Command : {{u_initiate}}</h3>
+    {% verbatim %}
+
+    <div ng-controller="testCtrl">
+        <h3>v_command : {{$parent.x.v_command}}</h3>
+        <input style="width:500px;" type="text" name="{{$parent.x.v_command}}" ng-model="$parent.x.v_command" />
+        <button id="button" ng-click="SendCommand($parent.x)">Execute</button><br />
+
+        <br />
+        <h3>title : {{title}}</h3>
+
+    </div>
+
+    <br />
+    <h3>Finding Details</h3>
+    <input style="width:500px;" type="text" name="{{x.Finding_Details}}" ng-model="x.Finding_Details" /><br />
+    <h3>Comments</h3>
+    <input style="width:500px;" type="text" name="{{x.Comments}}" ng-model="x.Comments" /><br />
+
+</div>                
+
+                {% endverbatim %}
+{% endblock %}
+
+
+<!--
 <html>
 
 <body>
 <form action="{% url "lockdown:index" %}" method="post">
     {% csrf_token %}
-	<table>
-    {{ form }}
-	</table>
+    <table>
+    form }}
+    </table>
     <input type="submit" value="Execute" />
 </form>
 <div style="background-color:darkblue;">
-<p style="color:white;">{{ initiate | safe }}</p>
+<p style="color:white;"> initiate | safe }}</p>
 </div>
 
 
@@ -19,3 +50,4 @@
 
 </body>
 </html>
+-->

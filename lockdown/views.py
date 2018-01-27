@@ -20,10 +20,27 @@ from django.http import JsonResponse
 
 from .forms import NameForm
 
+
+from lockdown.models import *
+from lockdown.serializers import CommandSerializer
+
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import JSONParser
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework import mixins
+from rest_framework import generics
+from rest_framework import permissions
+from rest_framework.renderers import TemplateHTMLRenderer
+
 # Create your views here.
 
 # STANDARD INDEX HELLO WORLD! APPLICATION
-
+"""
 def index(request):
     #form = "Hello World!"
     # if this is a POST request we need to process the form data
@@ -52,20 +69,50 @@ def index(request):
 
     return render(request, 'lockdown/index.html', {'form': form})
     #return render(request, 'theform/index.html', {'form': form})
+"""
+
+def index(request):
+    if request.method == 'POST':
+        return Response({"message": "Got some data!", "data": request.data})
+    template_name = 'lockdown/index.html'
+    return Response({"message": "Hello, world!"})
+
+class CommandList(generics.ListCreateAPIView):
+    queryset = Command.objects.all()
+    serializer_class = CommandSerializer
+
+
+class CommandDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Command.objects.all()
+    serializer_class = CommandSerializer
+
+
+
 
 
 class SignUpView(CreateView):
     template_name = 'lockdown/signup.html'
     form_class = UserCreationForm
 
-def validate_username(request):
-    username = request.GET.get('username', None)
+def RunCommand(request):
+    """
+    host_name = request.GET.get('host_name', None)
+    admin_username = request.GET.get('admin_username', None)
+    admin_password = request.GET.get('admin_password', None)
+    command = request.GET.get('command', None)
+    """
+    host_name = "LAPTOP-HEBE6VM3"
+    admin_username = "miguel"
+    admin_password = ")P:?/;p0)OL>.lo9"
+    command = "ls"
+    
+    u_initiate = remote_command(host_name, admin_username, admin_password, command)
     data = {
-        'is_taken': User.objects.filter(username__iexact=username).exists()
+        'u_initiate': u_initiate,
     }
-    if data['is_taken']:
-        data['error_message'] = 'A user with this username already exists.'
+
     return JsonResponse(data)
+
 
 
     
