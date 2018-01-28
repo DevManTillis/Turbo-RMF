@@ -65,45 +65,50 @@
                                             <div class="tab-content">
                                                 <!--cmd prompt-->
                                                 <div ng-controller="testCtrl">
-                                                    <input style="width:100%;height:50px;color:blue;" type="text" name="{{command}}" ng-model="command" />
-                                                    <button style="color:blue;" id="button" ng-click="SendCommand()">Apply Fix</button>
-                                                    <button style="color:blue;" id="button">Remove Fix</button><br />
+                                                    <input style="width:100%;height:50px;color:blue;" type="text" name="{{ x.v_ids }}_apply_fix" ng-model="$parent.x.v_command" />
+                                                    <button style="color:blue;" id="button" ng-click="ApplyFix($parent.x)">Apply Fix</button>
+                                                    <input style="width:100%;height:50px;color:blue;" type="text" name="{{ x.v_ids }}_remove_fix" ng-model="$parent.x.v_remove_fix" />
+                                                    <button style="color:blue;" id="button" ng-click="RemoveFix($parent.x)">Remove Fix</button><br />
                                                     <p>{{title}}</p><br />
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="toggle_tab">
                                             <input class="toggle_input" id="{{ x.v_ids }}_1" type="checkbox" name="tabs">
                                             <label class="toggle_label" for="{{ x.v_ids }}_1">Discussion:</label>
                                             <div class="tab-content">
-                                                <p>{{ x.v_dis }}</p>
+                                                <p style="margin:0;padding:0;">{{ x.v_dis }}</p>
                                             </div>
                                         </div>
                                         <div class="toggle_tab">
                                             <input class="toggle_input" id="{{ x.v_ids }}_2" type="checkbox" name="tabs">
                                             <label class="toggle_label" for="{{ x.v_ids }}_2">Check Content:</label>
                                             <div class="tab-content">
-                                                <p>{{ x.v_con }}</p>
+                                                <p style="margin:0;padding:0;">{{ x.v_con }}</p>
                                             </div>
                                         </div>
                                         <div class="toggle_tab">
                                             <input class="toggle_input" id="{{ x.v_ids }}_3" type="checkbox" name="tabs">
                                             <label class="toggle_label" for="{{ x.v_ids }}_3">Fix Text:</label>
                                             <div class="tab-content">
-                                                <p>{{ x.v_fix }}</p>
+                                                <p style="margin:0;padding:0;">{{ x.v_fix }}</p>
                                             </div>
                                         </div>
-                                        <br />
-
-
-
-                                        <br />
-                                        <h3>Finding Details</h3>
-                                        <input style="width:500px;" type="text" name="{{x.Finding_Details}}" ng-model="x.Finding_Details" /><br />
-                                        <h3>Comments</h3>
-                                        <input style="width:500px;" type="text" name="{{x.Comments}}" ng-model="x.Comments" /><br />
-
+                                        <div class="toggle_tab">
+                                            <input class="toggle_input" id="{{ x.v_ids }}_4" type="checkbox" name="tabs">
+                                            <label class="toggle_label" for="{{ x.v_ids }}_4">Finding Details:</label>
+                                            <div class="tab-content">
+                                                <input style="width:100%;color:blue;" type="text" name="{{x.Finding_Details}}" ng-model="x.Finding_Details" /><br />
+                                            </div>
+                                        </div>
+                                        <div class="toggle_tab">
+                                            <input class="toggle_input" id="{{ x.v_ids }}_5" type="checkbox" name="tabs">
+                                            <label class="toggle_label" for="{{ x.v_ids }}_5">Comments:</label>
+                                            <div class="tab-content">
+                                                <input style="width:100%;color:blue;" type="text" name="{{x.Comments}}" ng-model="x.Comments" /><br />
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

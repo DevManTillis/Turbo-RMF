@@ -49,6 +49,7 @@ class Vuln(models.Model):
     Comments = models.CharField(max_length=200,default='NONE')
     v_det = models.CharField(max_length=200,default='NONE')
     v_command = models.CharField(max_length=9000,default='NONE')
+    v_remove_fix = models.CharField(max_length=9000,default='NONE')
     v_command_status = models.CharField(max_length=9000,default='NONE')
     v_command_enabled = models.CharField(max_length=9000,default='NONE')
     

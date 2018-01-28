@@ -12,7 +12,7 @@
       <style>
 .half {
   float: left;
-  width: 50%;
+  width: 100%;
   padding: 0 1em;
 }
 
@@ -47,7 +47,7 @@
 }
 .tab-content {
   max-height: 0;
-
+  
   background: #1abc9c;
   -webkit-transition: max-height .35s;
   -o-transition: max-height .35s;
@@ -61,7 +61,7 @@
 }
 
 .toggle_input:checked ~ .tab-content {
-  max-height: 10em;
+  max-height: 100%;
 }
 
 
@@ -228,7 +228,7 @@ app.controller('myCtrl', function($scope, $http) {
         $scope.host_name = "LAPTOP-HEBE6VM3"
         $scope.admin_username = "miguel"
         $scope.admin_password = ")P:?/;p0)OL>.lo9"
-        $scope.command = "ls"
+        //$scope.command = "ls"
 /*
         $scope.GetCommand = function () {
             $http.get("/lockdown/run_command/").then(function (response) {
@@ -236,7 +236,25 @@ app.controller('myCtrl', function($scope, $http) {
             });
         };
 */
-        $scope.SendCommand = function () {
+
+// APPLY VULNERABILTY FIX
+        $scope.ApplyFix = function (value) {
+            // SAVE FIX TO DATABASE
+            $scope.command = value.v_command
+            $http({
+                method: 'PUT',
+                url: '/theform/vuln/' + value.id + '/',
+                data: value,
+                headers: { 'Content-Type': 'application/json' }
+            }).then(function (data) {
+                if (data.errors) {
+                    console.log('COULDNT POST!');
+                    $scope.PostDataResponse = data.errors.name;
+                } else {
+                    $scope.PostDataResponse = data.message;
+                }
+            });
+            // APPLY FIX AND RETURN STANDARD OUTPUT
             $http({
                 method: 'POST',
                 url: '/lockdown/run_command/',
@@ -251,8 +269,49 @@ app.controller('myCtrl', function($scope, $http) {
                         $scope.PostDataResponse = data.message;
                     }
                 });
-            // end iter for values
         }
+
+
+// REMOVE VULNERABILITY FIX
+        $scope.RemoveFix = function (value) {
+            // SAVE REMOVE FIX TO DATABASE
+            $scope.command = value.v_remove_fix
+            $http({
+                method: 'PUT',
+                url: '/theform/vuln/' + value.id + '/',
+                data: value,
+                headers: { 'Content-Type': 'application/json' }
+            }).then(function (data) {
+                if (data.errors) {
+                    console.log('COULDNT POST!');
+                    $scope.PostDataResponse = data.errors.name;
+                } else {
+                    $scope.PostDataResponse = data.message;
+                }
+            });
+            // APPLY REMOVE FIX
+            $http({
+                method: 'POST',
+                url: '/lockdown/run_command/',
+                data: $scope.command,
+                headers: { 'Content-Type': 'application/json' }
+            }).then(function (data) {
+                $scope.title = data.data;
+                if (data.errors) {
+                    console.log('COULDNT POST!');
+                    $scope.PostDataResponse = data.errors.name;
+                } else {
+                    $scope.PostDataResponse = data.message;
+                }
+            });
+        }
+
+
+
+
+
+
+
         /**/
     });
 
