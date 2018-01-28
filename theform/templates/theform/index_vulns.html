@@ -15,6 +15,23 @@
 
 
     <form name="form" id="form">
+
+
+
+
+<!--cmd prompt-->
+        {% verbatim %}
+        <div ng-controller="testCtrl">
+            <p>{{title}}</p><br />
+            <p></p>
+            <input style="width:500px;height:100px;" type="text" name="{{command}}" ng-model="command" />
+            <button id="button" ng-click="SendCommand()">Send Command</button><br />
+        </div>
+        {% endverbatim %}
+
+
+
+
         <button id="button" ng-click="SendData()">Submit</button><br />
 
         <div class="col-sm-10">
@@ -73,14 +90,7 @@
                                         </div>
                                         <br />
 
-                                        <div ng-controller="testCtrl">
-                                            <h3>v_command : {{$parent.x.v_command}}</h3>
-                                            <input style="width:500px;" type="text" name="{{$parent.x.v_command}}" ng-model="$parent.x.v_command" />
-                                            <button id="button" ng-click="SendCommand($parent.x)">Execute</button><br />
 
-                                            <br />
-                                            <h3>title : {{title}}</h3>
-                                        </div>
 
                                         <br />
                                         <h3>Finding Details</h3>

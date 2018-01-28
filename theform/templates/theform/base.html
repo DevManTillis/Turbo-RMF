@@ -221,16 +221,29 @@ app.controller('myCtrl', function($scope, $http) {
 
     });
 
+
     app.controller('testCtrl', function ($scope, $http) {
         $scope.title = "Bingo"
-        $scope.SendCommand = function (value) {
-                console.log("pk: " + value.id + " " + " name: " + value.v_ids + " " + "Submitted ");
-                $http({
-                    method: 'PUT',
-                    url: '/theform/vuln/' + value.id + '/',
-                    data: value,
+
+        $scope.host_name = "LAPTOP-HEBE6VM3"
+        $scope.admin_username = "miguel"
+        $scope.admin_password = ")P:?/;p0)OL>.lo9"
+        $scope.command = "ls"
+/*
+        $scope.GetCommand = function () {
+            $http.get("/lockdown/run_command/").then(function (response) {
+                $scope.title = response.data.u_initiate;
+            });
+        };
+*/
+        $scope.SendCommand = function () {
+            $http({
+                method: 'POST',
+                url: '/lockdown/run_command/',
+                data: $scope.command,
                     headers: { 'Content-Type': 'application/json' }
-                }).then(function (data) {
+            }).then(function (data) {
+                $scope.title = data.data;
                     if (data.errors) {
                         console.log('COULDNT POST!');
                         $scope.PostDataResponse = data.errors.name;
@@ -240,10 +253,35 @@ app.controller('myCtrl', function($scope, $http) {
                 });
             // end iter for values
         }
-
-
-
+        /**/
     });
+
+/**/
+
+//    app.controller('testCtrl', function ($scope, $http) {
+//        $scope.title = "Bingo"
+//        $scope.SendCommand = function (value) {
+//                console.log("pk: " + value.id + " " + " name: " + value.v_ids + " " + "Submitted ");
+//                $http({
+//                    method: 'PUT',
+//                    url: '/theform/vuln/' + value.id + '/',
+//                    data: value,
+//                    headers: { 'Content-Type': 'application/json' }
+//                }).then(function (data) {
+//                   if (data.errors) {
+//                       console.log('COULDNT POST!');
+//                        $scope.PostDataResponse = data.errors.name;
+//                    } else {
+//                        $scope.PostDataResponse = data.message;
+//                   }
+//                });
+//            // end iter for values
+//        }
+//
+//
+//
+//    });
+
 
 
 </script>

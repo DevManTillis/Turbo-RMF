@@ -104,14 +104,16 @@ def RunCommand(request):
     host_name = "LAPTOP-HEBE6VM3"
     admin_username = "miguel"
     admin_password = ")P:?/;p0)OL>.lo9"
-    command = "ls"
+    
+    command = request.body.decode("utf-8")
     
     u_initiate = remote_command(host_name, admin_username, admin_password, command)
-    data = {
-        'u_initiate': u_initiate,
-    }
 
-    return JsonResponse(data)
+##    data = {
+##        'u_initiate': u_initiate,
+##    }
+
+    return JsonResponse(u_initiate, safe=False)
 
 
 
