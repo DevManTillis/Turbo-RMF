@@ -19,15 +19,7 @@
 
 
 
-<!--cmd prompt-->
-        {% verbatim %}
-        <div ng-controller="testCtrl">
-            <p>{{title}}</p><br />
-            <p></p>
-            <input style="width:500px;height:100px;" type="text" name="{{command}}" ng-model="command" />
-            <button id="button" ng-click="SendCommand()">Send Command</button><br />
-        </div>
-        {% endverbatim %}
+
 
 
 
@@ -67,6 +59,20 @@
                             <div class="tab-content">
                                 <div style="width:100%;">
                                     <div class="half">
+                                        <div class="toggle_tab">
+                                            <input class="toggle_input" id="{{ x.v_ids }}_0" type="checkbox" name="tabs">
+                                            <label class="toggle_label" for="{{ x.v_ids }}_0">PowerShell.exe:</label>
+                                            <div class="tab-content">
+                                                <!--cmd prompt-->
+                                                <div ng-controller="testCtrl">
+                                                    <input style="width:100%;height:50px;color:blue;" type="text" name="{{command}}" ng-model="command" />
+                                                    <button style="color:blue;" id="button" ng-click="SendCommand()">Apply Fix</button>
+                                                    <button style="color:blue;" id="button">Remove Fix</button><br />
+                                                    <p>{{title}}</p><br />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                         <div class="toggle_tab">
                                             <input class="toggle_input" id="{{ x.v_ids }}_1" type="checkbox" name="tabs">
                                             <label class="toggle_label" for="{{ x.v_ids }}_1">Discussion:</label>
