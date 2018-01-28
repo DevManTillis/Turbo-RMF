@@ -1,7 +1,7 @@
 ﻿    <!DOCTYPE html>
     <html lang="en">
     <head>
-      <title>Bootstrap Example</title>
+      <title>Turbo RMF</title>
       <meta charset="utf-8">
 	  
       <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -216,31 +216,19 @@ app.controller('myCtrl', function($scope, $http) {
             }
           });
 			})
-			// end iter for values
+
 			}
 
     });
 
 
     app.controller('testCtrl', function ($scope, $http) {
-        $scope.title = "Fix Output"
-
-        $scope.host_name = "LAPTOP-HEBE6VM3"
-        $scope.admin_username = "miguel"
-        $scope.admin_password = ")P:?/;p0)OL>.lo9"
-        //$scope.command = "ls"
-/*
-        $scope.GetCommand = function () {
-            $http.get("/lockdown/run_command/").then(function (response) {
-                $scope.title = response.data.u_initiate;
-            });
-        };
-*/
+        $scope.std_out = "Fix Output"
 
 // APPLY VULNERABILTY FIX
-        $scope.ApplyFix = function (value) {
+        $scope.ApplyFix = function (host_name, admin_username, admin_password, value) {
             // SAVE FIX TO DATABASE
-            $scope.command = value.v_command
+
             $http({
                 method: 'PUT',
                 url: '/theform/vuln/' + value.id + '/',
@@ -258,10 +246,15 @@ app.controller('myCtrl', function($scope, $http) {
             $http({
                 method: 'POST',
                 url: '/lockdown/run_command/',
-                data: $scope.command,
+                data: {
+                    'ip_addr': $scope.ip_addr,
+                    'admin_username': $scope.admin_username,
+                    'admin_password': $scope.admin_password,
+                    'command': value.v_command,
+                },
                     headers: { 'Content-Type': 'application/json' }
             }).then(function (data) {
-                $scope.title = data.data;
+                $scope.std_out = data.data;
                     if (data.errors) {
                         console.log('COULDNT POST!');
                         $scope.PostDataResponse = data.errors.name;
@@ -273,9 +266,8 @@ app.controller('myCtrl', function($scope, $http) {
 
 
 // REMOVE VULNERABILITY FIX
-        $scope.RemoveFix = function (value) {
+        $scope.RemoveFix = function (host_name, admin_username, admin_password, value) {
             // SAVE REMOVE FIX TO DATABASE
-            $scope.command = value.v_remove_fix
             $http({
                 method: 'PUT',
                 url: '/theform/vuln/' + value.id + '/',
@@ -293,10 +285,15 @@ app.controller('myCtrl', function($scope, $http) {
             $http({
                 method: 'POST',
                 url: '/lockdown/run_command/',
-                data: $scope.command,
+                data: {
+                    'ip_addr': $scope.ip_addr,
+                    'admin_username': $scope.admin_username,
+                    'admin_password': $scope.admin_password,
+                    'command': value.v_remove_fix,
+                },
                 headers: { 'Content-Type': 'application/json' }
             }).then(function (data) {
-                $scope.title = data.data;
+                $scope.std_out = data.data;
                 if (data.errors) {
                     console.log('COULDNT POST!');
                     $scope.PostDataResponse = data.errors.name;
@@ -317,40 +314,18 @@ app.controller('myCtrl', function($scope, $http) {
 
 /**/
 
-//    app.controller('testCtrl', function ($scope, $http) {
-//        $scope.title = "Bingo"
-//        $scope.SendCommand = function (value) {
-//                console.log("pk: " + value.id + " " + " name: " + value.v_ids + " " + "Submitted ");
-//                $http({
-//                    method: 'PUT',
-//                    url: '/theform/vuln/' + value.id + '/',
-//                    data: value,
-//                    headers: { 'Content-Type': 'application/json' }
-//                }).then(function (data) {
-//                   if (data.errors) {
-//                       console.log('COULDNT POST!');
-//                        $scope.PostDataResponse = data.errors.name;
-//                    } else {
-//                        $scope.PostDataResponse = data.message;
-//                   }
-//                });
-//            // end iter for values
-//        }
-//
-//
-//
-//    });
+
 
 
 
 </script>
 	
 	
-    <div class="container-fluid" style="background-color:#2196F3;color:#fff;height:9vh;">
-      <h1>{{validity_}}</h1>
-      <p>Total Vulns: 256 Open:  Closed:  N/A:  STIG Name:{{ checklist.checklist_text }}</p>
-    
-	</div>
+<div class="container-fluid" style="background-color:#2196F3;color:#fff;height:9vh;">
+    <!--<h1>validity_}}</h1>-->
+    <h3><b>Turbo RMF</b> - RMF Assessment & Config Management Made Easy.<!-- checklist.checklist_text }}--></h3>
+
+</div>
 
 	
 <div>

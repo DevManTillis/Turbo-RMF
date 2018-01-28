@@ -1,14 +1,14 @@
 from winrm.protocol import Protocol
 import collections
 
-def remote_command(host_name, admin_username, admin_password, command):
+def remote_command(ip_addr, admin_username, admin_password, command):
     powershell = 'powershell -c'
     results = list()
 
     p = Protocol(
-        endpoint='https://%s:5986/wsman' %(host_name),
+        endpoint='https://%s:5986/wsman' %(ip_addr),
         transport='ntlm',
-        username=r'%s\%s'%(host_name, admin_username),
+        username=r'%s\%s'%(ip_addr, admin_username),
         password='%s' %(admin_password),
         server_cert_validation='ignore')
     shell_id = p.open_shell()
@@ -27,4 +27,4 @@ def remote_command(host_name, admin_username, admin_password, command):
 
     
 
-#print(remote_command('localhost', 'miguel', ')P:?/;p0)OL>.lo9', 'p'))
+#print(remote_command('command-post', 'xadmin', 'MKO)PL<mko0pl,', 'ls'))

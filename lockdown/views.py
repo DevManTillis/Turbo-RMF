@@ -36,6 +36,7 @@ from rest_framework import mixins
 from rest_framework import generics
 from rest_framework import permissions
 from rest_framework.renderers import TemplateHTMLRenderer
+import json
 
 # Create your views here.
 
@@ -86,33 +87,21 @@ class CommandDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Command.objects.all()
     serializer_class = CommandSerializer
 
-
-
-
+# tfweb499
+# encinitas flowers
 
 class SignUpView(CreateView):
     template_name = 'lockdown/signup.html'
     form_class = UserCreationForm
 
 def RunCommand(request):
-    """
-    host_name = request.GET.get('host_name', None)
-    admin_username = request.GET.get('admin_username', None)
-    admin_password = request.GET.get('admin_password', None)
-    command = request.GET.get('command', None)
-    """
-    host_name = "LAPTOP-HEBE6VM3"
-    admin_username = "miguel"
-    admin_password = ")P:?/;p0)OL>.lo9"
-    
-    command = request.body.decode("utf-8")
-    
-    u_initiate = remote_command(host_name, admin_username, admin_password, command)
-
-##    data = {
-##        'u_initiate': u_initiate,
-##    }
-
+    json_data = json.loads(request.body)
+    u_initiate = remote_command(
+        json_data.get("ip_addr"),
+        json_data.get('admin_username'),
+        json_data.get('admin_password'),
+        json_data.get('command')
+        )
     return JsonResponse(u_initiate, safe=False)
 
 

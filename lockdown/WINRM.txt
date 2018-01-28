@@ -4,7 +4,7 @@ https://godjango.com/18-basic-ajax/
 
 ## CONFIGURE WINRM CLIENT ###
 
-$host_name = "host_name"
+$host_name = hostname
 winrm quickconfig -quiet
 New-SelfSignedCertificate -DnsName host_name
 Get-ChildItem -path Cert:\LocalMachine\My\ | Where-Object -Property Subject -EQ "CN=hostname" | select Thumbprint -ExpandProperty Thumbprint
