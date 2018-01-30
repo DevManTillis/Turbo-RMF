@@ -4,7 +4,7 @@ This web application gives cyber security professionals the opportunity to autom
 - Select Checklist 127.0.0.1:8000/checklists/
 - Modify Checklist 127.0.0.1:8000/vuln/1/
 
-![turbo-rmf_snippet](https://user-images.githubusercontent.com/15160643/35486600-249460ba-0425-11e8-80b5-5b204e88f7d3.PNG)
+
 
 
 ## Requirements
