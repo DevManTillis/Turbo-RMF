@@ -1,6 +1,7 @@
 # Turbo RMF
 This web application gives cyber security professionals the opportunity to automake most of the assesment phase of RMF. You can now implement vulnerability fixes & verify configuration at the click of a button. Your system modifications are then saved to a database. This makes system engineering easy.
 - Load Checklist 127.0.0.1:8000/upload/
+- Select Checklist 127.0.0.1:8000/checklists/
 - Modify Checklist 127.0.0.1:8000/vuln/
 
 ![turbo-rmf_snippet](https://user-images.githubusercontent.com/15160643/35486600-249460ba-0425-11e8-80b5-5b204e88f7d3.PNG)
