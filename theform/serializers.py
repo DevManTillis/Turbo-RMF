@@ -7,6 +7,7 @@ class VulnSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vuln
         fields = (
+            #'checklist',
             'v_ids',
             'v_sev',
             'v_sta',

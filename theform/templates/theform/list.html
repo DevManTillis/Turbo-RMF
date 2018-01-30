@@ -1,0 +1,11 @@
+<h1>Checklists</h1>
+
+<a href="{% url 'upload:run' %}">Upload Checklist</a>
+<br />
+<br />
+<ul>
+    {% for check in checklist %}
+    <li><a href="{% url 'theform:vulns' check.id %}">{{ check.checklist_text }} -- {{check.id}} -- {{ check.pub_date }} -- {{ check.checklist_owner }}</a></li>
+    {% endfor %}
+</ul>
+<!-- check.id-->

@@ -34,44 +34,55 @@ def index(request):
     crap = "Hello World!"
     return render(request, 'theform/index.html', {'crap': crap})
 
-def map(request):
-    crap = "Hello World!"
-    return render(request, 'theform/map.html', {'crap': crap})
 
-def main(request):
-    crap = "Hello World!"
-    return render(request, 'theform/main.html', {'crap': crap})
+# RETURN ANGULAR FORM
+def vulns(request,pk):
+    #crap = pk
+    return render(request, 'theform/index_vulns.html', {'pk': pk})
 
-def low(request):
-    crap = "Hello World!"
-    return render(request, 'theform/low.html', {'crap': crap})
+# REST API OF VULN LIST
+@api_view(['GET', 'POST'])
+def VulnList(request,pk):
+    try:
+        query = Checklist.objects.get(pk=pk)
+        queryset = query.vuln_set.all()
+    except queryset.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
 
-def medium(request):
-    crap = "Hello World!"
-    return render(request, 'theform/medium.html', {'crap': crap})
+    if request.method == 'GET':
+        serializer = VulnSerializer(queryset, many=True)
+        return Response(serializer.data)
 
-def high(request):
-    crap = "Hello World!"
-    return render(request, 'theform/high.html', {'crap': crap})
+    elif request.method == 'PUT':
+        serializer = VulnSerializer(snippet, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+#    elif request.method == 'DELETE':
+#        queryset.delete()
+#        return Response(status=status.HTTP_204_NO_CONTENT)
 
-
-
-def vulns(request):
-    crap = "Hello World!"
-    return render(request, 'theform/index_vulns.html', {'crap': crap})
-
-
+"""
 class VulnList(generics.ListCreateAPIView):
-    queryset = Vuln.objects.all()
+    queryset = Vuln.objects.filter(checklist__id=1)
     serializer_class = VulnSerializer
-
+"""
 
 class VulnDetail(generics.RetrieveUpdateDestroyAPIView):
+    #cid = ""
     queryset = Vuln.objects.all()
     serializer_class = VulnSerializer
 
 
+class ListChecklists(generic.ListView):
+    model = Checklist
+    template_name = 'theform/list.html'
+    context_object_name = 'checklist'
 
+    def get_queryset(self):
+        """Return the last five published questions."""
+        return Checklist.objects.all()
 
 

@@ -188,8 +188,10 @@ app.config(function($httpProvider) {
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 });
-app.controller('myCtrl', function($scope, $http) {
-  $http.get("/theform/vuln/").then(function(response) {
+
+//www.django-rest-framework.org/tutorial/2-requests-and-responses/
+    app.controller('myCtrl', function ($scope, $http) {
+        $http.get("/theform/checklist/" +{{ pk }}+"/"/*+ checklist_id    "/theform/checklist/1/"*/).then(function(response) {
       $scope.myWelcome = response.data;
 	  $scope.options = ["low","medium","high"];
       $scope.status_options = ["Not_Reviewed", "Open", "NotAFinding", "Not_Applicable"];
@@ -323,8 +325,11 @@ app.controller('myCtrl', function($scope, $http) {
 	
 <div class="container-fluid" style="background-color:#2196F3;color:#fff;height:9vh;">
     <!--<h1>validity_}}</h1>-->
-    <h3><b>Turbo RMF</b> - RMF Assessment & Config Management Made Easy.<!-- checklist.checklist_text }}--></h3>
-
+    <h3>pk:{{pk}}<b>Turbo RMF</b> - RMF Assessment & Config Management Made Easy.<!-- checklist.checklist_text }}--></h3>
+    <div>
+        <a style="color:white;" href="{% url 'theform:checklists' %}">HOME</a>
+    </div>
+    
 </div>
 
 	
