@@ -7,6 +7,7 @@ from django.forms import ModelForm
 # Create your models here.
 
 class Document(models.Model):
+    document_version = models.CharField(max_length=200, default='NONE')
     document_name = models.CharField(max_length=200, default='NONE')
     document_owner = models.CharField(max_length=200, default='NONE')
     document_data = models.CharField(max_length=200)

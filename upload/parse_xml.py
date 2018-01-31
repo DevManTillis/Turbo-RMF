@@ -76,13 +76,13 @@ def process_xml(data):
         v_fix = check_for_value(fixtext)
         v_ref = check_for_value(stigref)
         v_sta = check_for_value(status)
-        v_com = check_for_value(comments)
+        Comments = check_for_value(comments)
         v_det = check_for_value(finding_details)
 
         vuln_dict = {
             "vulnid":v_id,"severity":v_sev,"vulndiscuss":v_dis,
             "checkcontent":v_con,"fixtext":v_fix,"stigref":v_ref,
-            "status":v_sta,"comments":v_com,"finding_details":v_det,
+            "status":v_sta,"comments":Comments,"finding_details":v_det,
             }
         
         # add list to main list

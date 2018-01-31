@@ -66,7 +66,7 @@ def run(request):
             v_fix = str(vuln["fixtext"]),
             v_ref = str(vuln["stigref"]),
             v_sta = str(vuln["status"]),
-            v_com = str(vuln["comments"]),
+            Comments = str(vuln["comments"]),
             v_det = str(vuln["finding_details"])
                 )
         
