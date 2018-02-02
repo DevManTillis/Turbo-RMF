@@ -179,6 +179,74 @@ width:auto;
 p {
     font-size:1.5em;
 }
+
+
+
+
+
+
+        /* Style the tab */
+        .vtab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+            /* Style the buttons inside the tab */
+            .vtab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+                font-size: 17px;
+            }
+
+                /* Change background color of buttons on hover */
+                .vtab button:hover {
+                    background-color: #ddd;
+                }
+
+                /* Create an active/current tablink class */
+                .vtab button.active {
+                    background-color: #ccc;
+                }
+
+        /* Style the tab content */
+        .vtabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+
+
+
+/*NEW*/
+
+          .tabsdemoDynamicHeight md-content {
+              background-color: transparent !important;
+          }
+
+              .tabsdemoDynamicHeight md-content md-tabs {
+                  background: #f6f6f6;
+                  border: 1px solid #e1e1e1;
+              }
+
+                  .tabsdemoDynamicHeight md-content md-tabs md-tabs-wrapper {
+                      background: white;
+                  }
+
+              .tabsdemoDynamicHeight md-content h1:first-child {
+                  margin-top: 0;
+              }
+
+
+
+
       </style>
     </head>
     <body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
@@ -317,12 +385,14 @@ app.config(function($httpProvider) {
         /**/
     });
 
-/**/
+/*TABS JAVASCRIPT*/
 
 
 
 
-
+    // Get the element with id="defaultOpen" and click on it
+    //document.getElementById("defaultOpen").click();
+ angular.module('tabsDemoDynamicHeight', ['ngMaterial']);
 </script>
 	
 	
@@ -364,14 +434,8 @@ app.config(function($httpProvider) {
         }
         document.getElementById(cityName).style.display = "block";
         evt.currentTarget.className += " active";
-    }
-
-    // Get the element with id="defaultOpen" and click on it
-    //document.getElementById("defaultOpen").click();
-	
-	
-
-    </script>
+        }
+</script>
   </div>
     </body>
     </html>

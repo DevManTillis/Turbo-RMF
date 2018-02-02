@@ -23,6 +23,11 @@
             <!--CONFIGURE AUTHENTICATION FOR AUTO CONFIG-->
             {% verbatim %}
             <div class="half">
+
+
+
+
+
                 <div class="toggle_tab">
                     <input class="toggle_input" id="authdata" type="checkbox" name="tabs">
                     <label class="toggle_label" for="authdata">authdata </label>
@@ -78,6 +83,42 @@
                                 <div style="width:100%;">
                                     <div class="half">
                                         <!--AUTO LOCKDOWN CONTROL-->
+
+                                        <div>
+                                            <div style="height:300px;margin-bottom:70px;" class="container">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="active"><a data-toggle="tab" href="#{{ x.v_ids }}_1">Discussion:</a></li>
+                                                    <li><a data-toggle="tab" href="#{{ x.v_ids }}_2">Check Content:</a></li>
+                                                    <li><a data-toggle="tab" href="#{{ x.v_ids }}_3">Fix Text:</a></li>
+                                                </ul>
+
+                                                <div  class="tab-content">
+                                                    <div style="overflow-y:scroll;max-height:300px;" id="{{ x.v_ids }}_1" class="tab-pane fade in active">
+                                                        <h3>Discussion:</h3>
+                                                        <p>
+                                                            {{ x.v_dis}}
+                                                        </p>
+                                                    </div>
+                                                    <div style="overflow-y:scroll;max-height:300px;" id="{{ x.v_ids }}_2" class="tab-pane fade">
+                                                        <h3>Check Content:</h3>
+                                                        <p>
+                                                            {{ x.v_con}}
+                                                        </p>
+                                                    </div>
+                                                    <div style="overflow-y:scroll;max-height:300px;" id="{{ x.v_ids }}_3" class="tab-pane fade">
+                                                        <h3>Fix Text:</h3>
+                                                        <p>
+                                                            {{ x.v_fix}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+
+
                                         <div class="toggle_tab">
                                             <input class="toggle_input" id="{{ x.v_ids }}_0" type="checkbox" name="tabs">
                                             <label class="toggle_label" for="{{ x.v_ids }}_0">AUTO CONFIG - w/PowerShell.exe:</label>
@@ -93,27 +134,10 @@
                                             </div>
                                         </div>
 
-                                        <div class="toggle_tab">
-                                            <input class="toggle_input" id="{{ x.v_ids }}_1" type="checkbox" name="tabs">
-                                            <label class="toggle_label" for="{{ x.v_ids }}_1">Discussion:</label>
-                                            <div class="tab-content">
-                                                <p style="margin:0;padding:0;">{{ x.v_dis }}</p>
-                                            </div>
-                                        </div>
-                                        <div class="toggle_tab">
-                                            <input class="toggle_input" id="{{ x.v_ids }}_2" type="checkbox" name="tabs">
-                                            <label class="toggle_label" for="{{ x.v_ids }}_2">Check Content:</label>
-                                            <div class="tab-content">
-                                                <p style="margin:0;padding:0;">{{ x.v_con }}</p>
-                                            </div>
-                                        </div>
-                                        <div class="toggle_tab">
-                                            <input class="toggle_input" id="{{ x.v_ids }}_3" type="checkbox" name="tabs">
-                                            <label class="toggle_label" for="{{ x.v_ids }}_3">Fix Text:</label>
-                                            <div class="tab-content">
-                                                <p style="margin:0;padding:0;">{{ x.v_fix }}</p>
-                                            </div>
-                                        </div>
+
+
+
+
                                         <div class="toggle_tab">
                                             <input class="toggle_input" id="{{ x.v_ids }}_4" type="checkbox" name="tabs">
                                             <label class="toggle_label" for="{{ x.v_ids }}_4">Finding Details:</label>
