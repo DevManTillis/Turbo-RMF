@@ -1,155 +1,168 @@
 {% extends "theform/base.html" %}
 {% block content %}
 
+<!--LOADING ICON-->
+<div style="margin-left:auto;margin-right:auto;width:100%;" class="loading">
+    <div style="margin-left:auto;margin-right:auto;" class="loader"></div>
+    <h1 style="margin-left:auto;margin-right:auto;text-align:center;">Loading...</h1>
+</div>
 
-<div ng-app="myApp" ng-controller="myCtrl">
+<!--SAVING ICON-->
+<div style="margin-left:auto;margin-right:auto;width:100%;" class="saving">
+    <div style="margin-left:auto;margin-right:auto;" class="saver"></div>
+    <h1 style="margin-left:auto;margin-right:auto;text-align:center;">Saving...</h1>
+</div>
 
-
-    <nav class="col-sm-2" id="myScrollspy">
-        <ul class="nav nav-pills nav-stacked vertical-menu" data-offset-top="205">
-
-            {% verbatim %}
-            <li ng-repeat="x in myWelcome"><a data-toggle="pill" href="#{{ x.v_ids }}">{{ x.v_ids }}</a></li>
-            {% endverbatim %}
-        </ul>
-    </nav>
-
-
-    <form name="form" id="form">
-
-        <div class="col-sm-10">
+<div class="savehide">
+    <div class="loadhide" ng-app="myApp" ng-controller="myCtrl">
 
 
-            <!--CONFIGURE AUTHENTICATION FOR AUTO CONFIG-->
-            {% verbatim %}
-            <div class="half">
+        <nav class="col-sm-2" id="myScrollspy">
+            <ul class="nav nav-pills nav-stacked vertical-menu">
 
-
-
-
-
-                <div class="toggle_tab">
-                    <input class="toggle_input" id="authdata" type="checkbox" name="tabs">
-                    <label class="toggle_label" for="authdata">authdata </label>
-
-                    <div class="tab-content">
-                        <p>ip_addr : {{ip_addr}}</p>
-                        <input style="width:100px;height:20px;color:blue;" type="text" name="ip_addr" ng-model="ip_addr" /><br />
-                        <p>admin_username : {{admin_username}}</p>
-                        <input style="width:100px;height:20px;color:blue;" type="text" name="admin_username" ng-model="admin_username" /><br />
-                        <p>admin_password</p>
-                        <input style="width:100px;height:20px;color:blue;" type="text" name="admin_password" ng-model="admin_password" />
-                        <br />
-                    </div>
-                    <button style="color:black" id="button" ng-click="SendData()">Submit Checklist</button><br />
-                </div>
-            </div>
-            {% endverbatim %}
-
-
-
-
-
-            <div class="tab-content">
-                <div id="" class="active tab-pane toggle">
-                    <h1 style="font-size:4em">Welcome to Turbo RMF!</h1>
-                    <h1>Click on a Vulnerability item to get started.</h1>
-                </div>
                 {% verbatim %}
+                <li ng-repeat="x in myWelcome"><a data-toggle="pill" href="#{{ x.v_ids }}">{{ x.v_ids }}</a></li>
+                {% endverbatim %}
+            </ul>
+        </nav>
 
 
-                <div ng-repeat="x in myWelcome" id="{{ x.v_ids }}" class="tab-pane toggle">
-                    <div id="{{ x.v_ids }}" class="row">
-                        <div class="container">
-                            <!--TOP TABS MENU-->
-                            <ul class="nav nav-pills">
-                                <li><a class="ness" data-toggle="pill">{{ x.v_ids }}</a></li>
-                                <li>
-                                    <a class="ness" data-toggle="pill">
-                                        <select style="color:black;" name="{{x.v_sev}}" ng-model="x.v_sev" ng-options="x for x in options">
-                                            {{x}}
-                                        </select><br />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="ness" data-toggle="pill">
-                                        <select style="color:black;" name="{{x.v_sta}}" ng-model="x.v_sta" ng-options="x for x in status_options">
-                                            {{x}}
-                                        </select><br />
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="tab-content">
-                                <div style="width:100%;">
-                                    <div class="half">
-                                        <!--AUTO LOCKDOWN CONTROL-->
+        <form name="form" id="form">
 
-                                        <div>
-                                            <div style="height:300px;margin-bottom:70px;" class="container">
-                                                <ul class="nav nav-tabs">
-                                                    <li class="active"><a data-toggle="tab" href="#{{ x.v_ids }}_1">Discussion:</a></li>
-                                                    <li><a data-toggle="tab" href="#{{ x.v_ids }}_2">Check Content:</a></li>
-                                                    <li><a data-toggle="tab" href="#{{ x.v_ids }}_3">Fix Text:</a></li>
-                                                </ul>
+            <div class="col-sm-10">
 
-                                                <div  class="tab-content">
-                                                    <div style="overflow-y:scroll;max-height:300px;" id="{{ x.v_ids }}_1" class="tab-pane fade in active">
-                                                        <h3>Discussion:</h3>
-                                                        <p>
-                                                            {{ x.v_dis}}
-                                                        </p>
+
+                <!--CONFIGURE AUTHENTICATION FOR AUTO CONFIG-->
+                {% verbatim %}
+                <div class="half">
+
+
+
+
+
+                    <div class="toggle_tab">
+                        <input class="toggle_input" id="authdata" type="checkbox" name="tabs">
+                        <label class="toggle_label" for="authdata">authdata </label>
+
+                        <div class="tab-content">
+                            <p>ip_addr : {{ip_addr}}</p>
+                            <input style="width:100px;height:20px;color:blue;" type="text" name="ip_addr" ng-model="ip_addr" /><br />
+                            <p>admin_username : {{admin_username}}</p>
+                            <input style="width:100px;height:20px;color:blue;" type="text" name="admin_username" ng-model="admin_username" /><br />
+                            <p>admin_password</p>
+                            <input style="width:100px;height:20px;color:blue;" type="text" name="admin_password" ng-model="admin_password" />
+                            <br />
+                        </div>
+                        <button style="color:black" id="button" ng-click="SendData()">Submit Checklist</button><br />
+                    </div>
+                </div>
+                {% endverbatim %}
+
+
+
+
+
+                <div class="tab-content">
+                    <div id="" class="active tab-pane toggle">
+                        <h1 style="font-size:4em">Welcome to Turbo RMF!</h1>
+                        <h1>Click on a Vulnerability item to get started.</h1>
+                    </div>
+                    {% verbatim %}
+
+
+                    <div ng-repeat="x in myWelcome" id="{{ x.v_ids }}" class="tab-pane toggle">
+                        <div id="{{ x.v_ids }}" class="row">
+                            <div class="container">
+                                <!--TOP TABS MENU-->
+                                <ul class="nav nav-pills">
+                                    <li><a class="ness" data-toggle="pill">{{ x.v_ids }}</a></li>
+                                    <li>
+                                        <a class="ness" data-toggle="pill">
+                                            <select style="color:black;" name="{{x.v_sev}}" ng-model="x.v_sev" ng-options="x for x in options">
+                                                {{x}}
+                                            </select><br />
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="ness" data-toggle="pill">
+                                            <select style="color:black;" name="{{x.v_sta}}" ng-model="x.v_sta" ng-options="x for x in status_options">
+                                                {{x}}
+                                            </select><br />
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div style="width:100%;">
+                                        <div class="half">
+                                            <!--AUTO LOCKDOWN CONTROL-->
+
+                                            <div>
+                                                <div style="height:300px;margin-bottom:70px;" class="container">
+                                                    <ul class="nav nav-tabs">
+                                                        <li class="active"><a data-toggle="tab" href="#{{ x.v_ids }}_1">Discussion:</a></li>
+                                                        <li><a data-toggle="tab" href="#{{ x.v_ids }}_2">Check Content:</a></li>
+                                                        <li><a data-toggle="tab" href="#{{ x.v_ids }}_3">Fix Text:</a></li>
+                                                    </ul>
+
+                                                    <div class="tab-content">
+                                                        <div style="overflow-y:scroll;max-height:300px;" id="{{ x.v_ids }}_1" class="tab-pane fade in active">
+                                                            <h3>Discussion:</h3>
+                                                            <p style="word-wrap: break-word;">
+                                                                {{ x.v_dis}}
+                                                            </p>
+                                                        </div>
+                                                        <div style="overflow-y:scroll;max-height:300px;" id="{{ x.v_ids }}_2" class="tab-pane fade">
+                                                            <h3>Check Content:</h3>
+                                                            <p>
+                                                                {{ x.v_con}}
+                                                            </p>
+                                                        </div>
+                                                        <div style="overflow-y:scroll;max-height:300px;" id="{{ x.v_ids }}_3" class="tab-pane fade">
+                                                            <h3>Fix Text:</h3>
+                                                            <p>
+                                                                {{ x.v_fix}}
+                                                            </p>
+                                                        </div>
                                                     </div>
-                                                    <div style="overflow-y:scroll;max-height:300px;" id="{{ x.v_ids }}_2" class="tab-pane fade">
-                                                        <h3>Check Content:</h3>
-                                                        <p>
-                                                            {{ x.v_con}}
-                                                        </p>
-                                                    </div>
-                                                    <div style="overflow-y:scroll;max-height:300px;" id="{{ x.v_ids }}_3" class="tab-pane fade">
-                                                        <h3>Fix Text:</h3>
-                                                        <p>
-                                                            {{ x.v_fix}}
-                                                        </p>
+
+
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="toggle_tab">
+                                                <input class="toggle_input" id="{{ x.v_ids }}_0" type="checkbox" name="tabs">
+                                                <label class="toggle_label" for="{{ x.v_ids }}_0">AUTO CONFIG - w/PowerShell.exe:</label>
+                                                <div class="tab-content">
+                                                    <!--cmd prompt-->
+                                                    <div ng-controller="testCtrl">
+                                                        <input style="width:100%;height:50px;color:blue;" type="text" name="{{ x.v_ids }}_apply_fix" ng-model="$parent.x.v_command" />
+                                                        <button style="color:blue;" id="button" ng-click="ApplyFix($scope.host_name, $scope.admin_username, $scope.admin_password,$parent.x)">Apply Fix</button>
+                                                        <input style="width:100%;height:50px;color:blue;" type="text" name="{{ x.v_ids }}_remove_fix" ng-model="$parent.x.v_remove_fix" />
+                                                        <button style="color:blue;" id="button" ng-click="RemoveFix($scope.host_name, $scope.admin_username, $scope.admin_password,$parent.x)">Remove Fix</button><br />
+                                                        <p>{{std_out}}</p><br />
                                                     </div>
                                                 </div>
-
-
-
                                             </div>
-                                        </div>
 
 
-                                        <div class="toggle_tab">
-                                            <input class="toggle_input" id="{{ x.v_ids }}_0" type="checkbox" name="tabs">
-                                            <label class="toggle_label" for="{{ x.v_ids }}_0">AUTO CONFIG - w/PowerShell.exe:</label>
-                                            <div class="tab-content">
-                                                <!--cmd prompt-->
-                                                <div ng-controller="testCtrl">
-                                                    <input style="width:100%;height:50px;color:blue;" type="text" name="{{ x.v_ids }}_apply_fix" ng-model="$parent.x.v_command" />
-                                                    <button style="color:blue;" id="button" ng-click="ApplyFix($scope.host_name, $scope.admin_username, $scope.admin_password,$parent.x)">Apply Fix</button>
-                                                    <input style="width:100%;height:50px;color:blue;" type="text" name="{{ x.v_ids }}_remove_fix" ng-model="$parent.x.v_remove_fix" />
-                                                    <button style="color:blue;" id="button" ng-click="RemoveFix($scope.host_name, $scope.admin_username, $scope.admin_password,$parent.x)">Remove Fix</button><br />
-                                                    <p>{{std_out}}</p><br />
+
+
+
+                                            <div class="toggle_tab">
+                                                <input class="toggle_input" id="{{ x.v_ids }}_4" type="checkbox" name="tabs">
+                                                <label class="toggle_label" for="{{ x.v_ids }}_4">Finding Details:</label>
+                                                <div class="tab-content">
+                                                    <input style="width:100%;color:blue;" type="text" name="{{x.Finding_Details}}" ng-model="x.Finding_Details" /><br />
                                                 </div>
                                             </div>
-                                        </div>
-
-
-
-
-
-                                        <div class="toggle_tab">
-                                            <input class="toggle_input" id="{{ x.v_ids }}_4" type="checkbox" name="tabs">
-                                            <label class="toggle_label" for="{{ x.v_ids }}_4">Finding Details:</label>
-                                            <div class="tab-content">
-                                                <input style="width:100%;color:blue;" type="text" name="{{x.Finding_Details}}" ng-model="x.Finding_Details" /><br />
-                                            </div>
-                                        </div>
-                                        <div class="toggle_tab">
-                                            <input class="toggle_input" id="{{ x.v_ids }}_5" type="checkbox" name="tabs">
-                                            <label class="toggle_label" for="{{ x.v_ids }}_5">Comments:</label>
-                                            <div class="tab-content">
-                                                <input style="width:100%;color:blue;" type="text" name="{{x.Comments}}" ng-model="x.Comments" /><br />
+                                            <div class="toggle_tab">
+                                                <input class="toggle_input" id="{{ x.v_ids }}_5" type="checkbox" name="tabs">
+                                                <label class="toggle_label" for="{{ x.v_ids }}_5">Comments:</label>
+                                                <div class="tab-content">
+                                                    <input style="width:100%;color:blue;" type="text" name="{{x.Comments}}" ng-model="x.Comments" /><br />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -157,16 +170,16 @@
                             </div>
                         </div>
                     </div>
+                    {% endverbatim %}
+
+
+
+                    <!--FORM-->
+                    <!--ENDFORM-->
                 </div>
-                {% endverbatim %}
-
-
-
-                <!--FORM-->
-                <!--ENDFORM-->
             </div>
-        </div>
 
-    </form>
+        </form>
+    </div>
 </div>
 {% endblock %}

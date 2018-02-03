@@ -164,9 +164,9 @@
 }
 
 .vertical-menu {
-    width: auto;
+    width: 100%;
     height: 90vh;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 .vertical-menu li {
@@ -224,53 +224,89 @@ p {
 
 
 
-
-/*NEW*/
-
-          .tabsdemoDynamicHeight md-content {
-              background-color: transparent !important;
+/* PAGE LOADING GRAPHIC */
+          .loader {
+              border: 16px solid #f3f3f3;
+              border-radius: 50%;
+              border-top: 16px solid #3498db;
+              width: 120px;
+              height: 120px;
+              -webkit-animation: spin 2s linear infinite; /* Safari */
+              animation: spin 2s linear infinite;
           }
 
-              .tabsdemoDynamicHeight md-content md-tabs {
-                  background: #f6f6f6;
-                  border: 1px solid #e1e1e1;
+          .saver {
+              border: 16px solid #f3f3f3;
+              border-radius: 50%;
+              border-top: 16px solid #3498db;
+              width: 120px;
+              height: 120px;
+              -webkit-animation: spin 2s linear infinite; /* Safari */
+              animation: spin 2s linear infinite;
+          }
+
+          /* Safari */
+          @-webkit-keyframes spin {
+              0% {
+                  -webkit-transform: rotate(0deg);
               }
 
-                  .tabsdemoDynamicHeight md-content md-tabs md-tabs-wrapper {
-                      background: white;
-                  }
+              100% {
+                  -webkit-transform: rotate(360deg);
+              }
+          }
 
-              .tabsdemoDynamicHeight md-content h1:first-child {
-                  margin-top: 0;
+          @keyframes spin {
+              0% {
+                  transform: rotate(0deg);
               }
 
-
-
-
+              100% {
+                  transform: rotate(360deg);
+              }
+          }
+          
+          .loadhide {
+              display:none;
+          }
+          .saving {
+              display: none;
+          }
+          .container{
+              width:100%;
+          }
       </style>
     </head>
-    <body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
+    <body  data-spy="scroll" data-target="#myScrollspy">
 <script>
 
-
-
 var app = angular.module('myApp', []);
-app.config(function($httpProvider) {
+    app.config(function ($httpProvider) {
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 });
 
 //www.django-rest-framework.org/tutorial/2-requests-and-responses/
     app.controller('myCtrl', function ($scope, $http) {
-        $http.get("/theform/checklist/" +{{ pk }}+"/"/*+ checklist_id    "/theform/checklist/1/"*/).then(function(response) {
+      //GET INITIAL BATCH OF AJAX VULNERABILITY ITEMS
+      $http.get("/theform/checklist/" +{{ pk }}+"/").then(function(response) {
       $scope.myWelcome = response.data;
 	  $scope.options = ["low","medium","high"];
       $scope.status_options = ["Not_Reviewed", "Open", "NotAFinding", "Not_Applicable"];
+      //LOADING ICON MAGIC
+      $('.loading').hide();
+      $('.loader').hide();
+      $('.loadhide').show();
+        });
 
-	  
-  });
-  
-     $scope.SendData = function () {
+    //SUBMIT ENTIRE LIST OF AJAX VULNERABILITY ITEMS
+    $scope.SendData = function () {
+        //SAVING ICON MAGIC
+        
+        $('.saving').show();
+        //$('.saver').show();
+        //$('.savehide').hide();
+        /**/
 	 values =  $scope.myWelcome
 	 angular.forEach(values, function(value, key) {
 	 //alert(values.id+" "+ values.v_ids);
@@ -280,28 +316,35 @@ app.config(function($httpProvider) {
           url     : '/theform/vuln/'+value.id+'/',
           data    : value,
           headers : {'Content-Type': 'application/json'}
-         }).then(function(data) {
+          }).then(function (data) {
+
             if (data.errors) {
 			console.log('COULDNT POST!');
               $scope.PostDataResponse = data.errors.name;
             } else {
               $scope.PostDataResponse = data.message;
             }
-          });
-			})
+         });
+          
+     })
+     //SAVING ICON MAGIC
+     //$('.saving').hide();
+     //$('.saver').hide();
+     //$('.savehide').show();
+     
+    }
+    
+    }); 
+    //$('.saving').hide();
 
-			}
 
-    });
-
-
+    //AUTO CONFIG LOCKDOWN SCRIPT MAGICS
     app.controller('testCtrl', function ($scope, $http) {
         $scope.std_out = "Fix Output"
 
-// APPLY VULNERABILTY FIX
+        // APPLY VULNERABILTY FIX
         $scope.ApplyFix = function (host_name, admin_username, admin_password, value) {
             // SAVE FIX TO DATABASE
-
             $http({
                 method: 'PUT',
                 url: '/theform/vuln/' + value.id + '/',
@@ -376,29 +419,14 @@ app.config(function($httpProvider) {
             });
         }
 
-
-
-
-
-
-
-        /**/
     });
 
-/*TABS JAVASCRIPT*/
 
-
-
-
-    // Get the element with id="defaultOpen" and click on it
-    //document.getElementById("defaultOpen").click();
- angular.module('tabsDemoDynamicHeight', ['ngMaterial']);
 </script>
 	
 	
-<div class="container-fluid" style="background-color:#2196F3;color:#fff;height:9vh;">
-    <!--<h1>validity_}}</h1>-->
-    <h3>pk:{{pk}}<b>Turbo RMF</b> - RMF Assessment & Config Management Made Easy.<!-- checklist.checklist_text }}--></h3>
+<div class="container-fluid" style="background-color:#2196F3;color:#fff;height:90px;width:100%;">
+    <h3><b>Turbo RMF</b> - RMF Assessment & Config Management Made Easy.</h3>
     <div>
         <a style="color:white;" href="{% url 'theform:checklists' %}">HOME</a>
     </div>
@@ -408,34 +436,12 @@ app.config(function($httpProvider) {
 	
 <div>
       <div class="row">	
-
-
-
-<!---->
-
 {% block content %}
 
 {% endblock %}
+      </div>
+ </div>
 
- 
 
-    </div>
-
-    <script>
-    function openCity(evt, cityName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(cityName).style.display = "block";
-        evt.currentTarget.className += " active";
-        }
-</script>
-  </div>
     </body>
     </html>
