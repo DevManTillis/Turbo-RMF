@@ -1,7 +1,7 @@
  # Turbo RMF (UNDER HEAVY DEVELOPMENT)
 This web application allows cyber security professionals to easily traverse the assesment phase of RMF. You can now implement vulnerability fixes quckly, accurately, reliably, & programmatically at the click of a button. Your system modifications are then saved to a database. This makes cyber security engineering & IT configuration managmentment easy.
 
-# Modify Checklist 127.0.0.1:8000/vuln/1/
+# Modify Checklist
 ![checklist](https://user-images.githubusercontent.com/15160643/35762624-c191f8a0-084e-11e8-882a-19426079b01e.PNG)
 # Select Checklist 127.0.0.1:8000/checklists/
 ![home](https://user-images.githubusercontent.com/15160643/35762625-c1afea36-084e-11e8-83b9-0ed73fdb66e5.PNG)
@@ -26,4 +26,4 @@ This web application allows cyber security professionals to easily traverse the 
 - python manage.py runserver
 
 ## Browse to site
-127.0.0.1:8000/vuln/1/
+127.0.0.1:8000/checklists/
