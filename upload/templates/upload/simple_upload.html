@@ -1,32 +1,31 @@
-{% extends 'upload/base.html' %}
+{% extends "upload/style_base.html" %}
 
 {% load static %}
 
 {% block content %}
-  <form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <input type="file" name="myfile">
     <button type="submit">Upload</button>
-  </form>
-  {{ doc_name }}  <br>
-  {{ doc_owner }}  <br>
-  {{ v_ids }}  <br>
-    {{ v_sev }}  <br>
-	  {{ v_dis }}  <br>
-	    {{ v_con }}  <br>
-		  {{ v_fix }}  <br>
-		    {{ v_ref }}  <br>
-			  {{ v_sta }}  <br>
-			    {{ v_com }}  <br>
-				  {{ v_det }}  <br>
-  <br>
-    <br>
-	  <br>
-  {{ doc_data }}
-
+</form>
+{{ doc_name }}  <br>
+{{ doc_owner }}  <br>
+{{ v_ids }}  <br>
+{{ v_sev }}  <br>
+{{ v_dis }}  <br>
+{{ v_con }}  <br>
+{{ v_fix }}  <br>
+{{ v_ref }}  <br>
+{{ v_sta }}  <br>
+{{ v_com }}  <br>
+{{ v_det }}  <br>
+<br>
+<br>
+<br>
+{{ doc_data }}
   {% if uploaded_file_url %}
-    <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+<p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
   {% endif %}
 
-  <p><a href="{% url 'upload:index' %}">Return to home</a></p>
+<p><a href="{% url 'theform:checklists' %}">Return to home</a></p>
 {% endblock %}

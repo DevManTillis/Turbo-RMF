@@ -107,6 +107,9 @@
   body {
       position: relative;
   }
+  div {
+      width:100%;
+  }
   .affix {
       top: 20px;
       z-index: 9999 !important;
@@ -277,7 +280,7 @@ p {
           }
       </style>
     </head>
-    <body  data-spy="scroll" data-target="#myScrollspy">
+    <body style="width:100%;" data-spy="scroll" data-target="#myScrollspy">
 <script>
 
 var app = angular.module('myApp', []);
@@ -303,7 +306,7 @@ var app = angular.module('myApp', []);
     $scope.SendData = function () {
         //SAVING ICON MAGIC
         
-        $('.saving').show();
+        //$('.saving').show();
         //$('.saver').show();
         //$('.savehide').hide();
         /**/
@@ -327,11 +330,12 @@ var app = angular.module('myApp', []);
          });
           
      })
+     //$scope.saving.h
      //SAVING ICON MAGIC
      //$('.saving').hide();
      //$('.saver').hide();
      //$('.savehide').show();
-     
+
     }
     
     }); 

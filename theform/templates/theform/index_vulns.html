@@ -8,10 +8,12 @@
 </div>
 
 <!--SAVING ICON-->
+{% verbatim %}
 <div style="margin-left:auto;margin-right:auto;width:100%;" class="saving">
     <div style="margin-left:auto;margin-right:auto;" class="saver"></div>
     <h1 style="margin-left:auto;margin-right:auto;text-align:center;">Saving...</h1>
 </div>
+{% endverbatim %}
 
 <div class="savehide">
     <div class="loadhide" ng-app="myApp" ng-controller="myCtrl">
@@ -36,26 +38,25 @@
                 {% verbatim %}
                 <div class="half">
 
-
-
-
-
-                    <div class="toggle_tab">
+                    <div class="toggle_tab" style="width:280px;float:left;">
                         <input class="toggle_input" id="authdata" type="checkbox" name="tabs">
                         <label class="toggle_label" for="authdata">authdata </label>
 
                         <div class="tab-content">
-                            <p>ip_addr : {{ip_addr}}</p>
+                            ip_addr : {{ip_addr}}
                             <input style="width:100px;height:20px;color:blue;" type="text" name="ip_addr" ng-model="ip_addr" /><br />
-                            <p>admin_username : {{admin_username}}</p>
+                            admin_username : {{admin_username}}
                             <input style="width:100px;height:20px;color:blue;" type="text" name="admin_username" ng-model="admin_username" /><br />
-                            <p>admin_password</p>
+                            admin_password :
                             <input style="width:100px;height:20px;color:blue;" type="text" name="admin_password" ng-model="admin_password" />
                             <br />
                         </div>
-                        <button style="color:black" id="button" ng-click="SendData()">Submit Checklist</button><br />
+
                     </div>
+                    <button class="toggle_tab" style="color:black;width:200px;height: 3em;padding:0;border:0;" id="button" ng-click="SendData()">
+                        <b>Submit Checklist</b></button><br />
                 </div>
+
                 {% endverbatim %}
 
 
